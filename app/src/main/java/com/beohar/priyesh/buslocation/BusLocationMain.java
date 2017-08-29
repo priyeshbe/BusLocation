@@ -1,5 +1,6 @@
 package com.beohar.priyesh.buslocation;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -9,6 +10,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class BusLocationMain extends Activity implements LocationListener {
 
@@ -47,13 +51,28 @@ public class BusLocationMain extends Activity implements LocationListener {
         /********* After registration onLocationChanged method called periodically after each 3 sec ***********/
     }
 
+    private boolean updateLocation(String busno, String lat, String lng) {
+        //getting the specified artist reference
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("bus3").child("busno");
+
+        //updating artist
+        BusUpdate busupdate = new BusUpdate(busno, lat, lng);
+        dR.setValue(busupdate);
+        Toast.makeText(getApplicationContext(), "Location Updated", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
     /************* Called after each 3 sec **********/
     @Override
     public void onLocationChanged(Location location) {
-
         String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
         Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
 
+        String busno = "3";
+        String lat = String.valueOf(location.getLatitude());
+        String lng = String.valueOf(location.getLongitude());
+
+        updateLocation(busno, lat, lng);
     }
 
 
