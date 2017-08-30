@@ -51,28 +51,30 @@ public class BusLocationMain extends Activity implements LocationListener {
         /********* After registration onLocationChanged method called periodically after each 3 sec ***********/
     }
 
-    private boolean updateLocation(String busno, String lat, String lng) {
+    private boolean updateLocation(String id, String busno, String lat, String lng) {
         //getting the specified artist reference
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("bus3").child("busno");
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("bus").child(id);
 
         //updating artist
-        BusUpdate busupdate = new BusUpdate(busno, lat, lng);
+        BusUpdate busupdate = new BusUpdate(id, busno, lat, lng);
         dR.setValue(busupdate);
-        Toast.makeText(getApplicationContext(), "Location Updated", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "Location Updated", Toast.LENGTH_LONG).show();
         return true;
     }
 
     /************* Called after each 3 sec **********/
     @Override
     public void onLocationChanged(Location location) {
-        String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
-        Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
 
-        String busno = "3";
+        //String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
+        //Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
+
+        String busId = "bus2";
+        String busno = "2";
         String lat = String.valueOf(location.getLatitude());
         String lng = String.valueOf(location.getLongitude());
 
-        updateLocation(busno, lat, lng);
+        updateLocation(busId, busno, lat, lng);
     }
 
 

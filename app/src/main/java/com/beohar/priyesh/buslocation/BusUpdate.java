@@ -9,25 +9,22 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class BusUpdate {
 
-    private String locBusno;
-    private String locLat;
-    private String locLng;
+    private String busId;
+    private String busno;
+    private String lat;
+    private String lng;
 
-    public BusUpdate(){
+    public BusUpdate(){    }
 
+    public BusUpdate(String busId, String busno, String lat, String lng) {
+        this.busId = busId;
+        this.busno = busno;
+        this.lat = lat;
+        this.lng = lng;
     }
 
-    public BusUpdate(String locBusno, String locLat, String locLng) {
-        this.locBusno = locBusno;
-        this.locLat = locLat;
-        this.locLng = locLng;
-    }
-
-    public String getLocBusno() { return locBusno; }
-    public String getLocLat() {
-        return locLat;
-    }
-    public String getLocLng() {
-        return locLng;
-    }
+    public String getBusId() { return busId; }
+    public String getBusno() { return busno; }
+    public String getLat() { return lat; }
+    public String getLng() { return lng; }
 }
