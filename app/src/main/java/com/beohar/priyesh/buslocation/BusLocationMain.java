@@ -16,10 +16,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class BusLocationMain extends Activity implements LocationListener {
 
+
     private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_location_main);
 
