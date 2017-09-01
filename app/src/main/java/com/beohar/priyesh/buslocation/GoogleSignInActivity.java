@@ -17,11 +17,13 @@ package com.beohar.priyesh.buslocation;
  */
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.squareup.picasso.Picasso;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -198,7 +201,29 @@ public class GoogleSignInActivity extends BaseActivity implements
         if (user != null) {
             mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
             //mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+            String infoUser =
+                    "personName = " + user.getDisplayName() + System.lineSeparator()
+                    + "personPhoto = " + user.getPhotoUrl();
+            mDetailTextView.setText(getString(R.string.firebase_status_fmt, infoUser));
 
+            //findViewById(R.id.ImageView01).setS(View.GONE);
+
+            ImageView bindImage = (ImageView)findViewById(R.id.ImageView01);
+            String pathToFile = user.getPhotoUrl().toString();
+
+            Context context = this;
+            Picasso.with(context).load(pathToFile).into(bindImage);
+
+
+
+/*
+    String personName = acct.getDisplayName();
+    String personGivenName = acct.getGivenName();
+    String personFamilyName = acct.getFamilyName();
+    String personEmail = acct.getEmail();
+    String personId = acct.getId();
+    Uri personPhoto = acct.getPhotoUrl();
+*/
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
