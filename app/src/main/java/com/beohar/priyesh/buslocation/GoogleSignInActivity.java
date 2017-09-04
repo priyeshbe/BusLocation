@@ -75,6 +75,7 @@ public class GoogleSignInActivity extends BaseActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+        findViewById(R.id.load_main).setOnClickListener(this);
 
 // 749853144024-u9k4cicnpfqsa4rmvpcjkhh2hjnciouu.apps.googleusercontent.com
 
@@ -196,6 +197,12 @@ public class GoogleSignInActivity extends BaseActivity implements
                 });
     }
 
+    private void giveAccess() {
+        Toast.makeText(GoogleSignInActivity.this, "Authentication given.",
+                Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_bus_location_main);
+    }
+
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
@@ -214,7 +221,7 @@ public class GoogleSignInActivity extends BaseActivity implements
             Context context = this;
             Picasso.with(context).load(pathToFile).into(bindImage);
 
-
+            findViewById(R.id.load_main).setVisibility(View.VISIBLE);
 
 /*
     String personName = acct.getDisplayName();
@@ -232,6 +239,7 @@ public class GoogleSignInActivity extends BaseActivity implements
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+            findViewById(R.id.load_main).setVisibility(View.GONE);
         }
     }
 
@@ -252,6 +260,9 @@ public class GoogleSignInActivity extends BaseActivity implements
             signOut();
         } else if (i == R.id.disconnect_button) {
             revokeAccess();
+        }
+        else if (i == R.id.load_main) {
+            giveAccess();
         }
     }
 }
