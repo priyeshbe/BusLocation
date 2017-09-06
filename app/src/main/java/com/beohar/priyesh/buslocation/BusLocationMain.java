@@ -9,19 +9,61 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+
 public class BusLocationMain extends Activity implements LocationListener {
 
     private LocationManager locationManager;
+
+    private String busNumber;
+
+    public String getBusNumber() {
+        return busNumber;
+    }
+
+    public void setBusNumber(String busNumber) {
+        this.busNumber = busNumber;
+        //Toast.makeText(getApplicationContext(), "ek baar aaya", Toast.LENGTH_LONG).show();
+        // 6f7BiwBUWkbUeOJcDQ4dxCgUmzX2
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_location_main);
+
+        String driverID = "6f7BiwBUWkbUeOJcDQ4dxCgUmzX2";
+
+        Button button = (Button) findViewById(R.id.buttonUpdateBusno);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Do something in response to button click
+                Spinner spinner = (Spinner) findViewById(R.id.spinnerBusno);
+                String vtext = spinner.getSelectedItem().toString();
+
+                setBusNumber(vtext);
+            }
+        });
+
+/*
+        Button button = (Button) findViewById(R.id.spinnerBusno);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Do something in response to button click
+
+            }
+        });
+*/
+
+
 
         /********** get Gps location service LocationManager object ***********/
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -71,6 +113,7 @@ public class BusLocationMain extends Activity implements LocationListener {
 
         String busId = "bus2";
         String busno = "2";
+        Toast.makeText(getApplicationContext(), getBusNumber(), Toast.LENGTH_LONG).show();
         String lat = String.valueOf(location.getLatitude());
         String lng = String.valueOf(location.getLongitude());
 
@@ -99,4 +142,5 @@ public class BusLocationMain extends Activity implements LocationListener {
         // TODO Auto-generated method stub
 
     }
+
 }

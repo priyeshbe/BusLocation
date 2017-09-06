@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BusLocation</string>
+
+    <string-array name="buses">
+        <item>bus1</item>
+        <item>bus2</item>
+        <item>bus3</item>
+    </string-array>
 </resources>
