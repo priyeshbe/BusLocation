@@ -111,7 +111,7 @@ public class BusLocationMain extends Activity implements LocationListener {
         //String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
         //Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
 
-        String busId = "bus2";
+        String busId = getBusNumber();
         String busno = "2";
         Toast.makeText(getApplicationContext(), getBusNumber(), Toast.LENGTH_LONG).show();
         String lat = String.valueOf(location.getLatitude());
