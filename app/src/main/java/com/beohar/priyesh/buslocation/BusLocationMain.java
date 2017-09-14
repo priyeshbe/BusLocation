@@ -51,12 +51,12 @@ public class BusLocationMain extends Activity implements LocationListener {
         /********* After registration onLocationChanged method called periodically after each 3 sec ***********/
     }
 
-    private boolean updateLocation(String id, String busno, String lat, String lng) {
+    private boolean updateLocation(String id, String lat, String lng) {
         //getting the specified artist reference
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("bus").child(id);
 
         //updating artist
-        BusUpdate busupdate = new BusUpdate(id, busno, lat, lng);
+        BusUpdate busupdate = new BusUpdate(id, lat, lng);
         dR.setValue(busupdate);
         //Toast.makeText(getApplicationContext(), "Location Updated", Toast.LENGTH_LONG).show();
         return true;
@@ -70,11 +70,10 @@ public class BusLocationMain extends Activity implements LocationListener {
         //Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
 
         String busId = "bus2";
-        String busno = "2";
         String lat = String.valueOf(location.getLatitude());
         String lng = String.valueOf(location.getLongitude());
 
-        updateLocation(busId, busno, lat, lng);
+        updateLocation(busId, lat, lng);
     }
 
 
