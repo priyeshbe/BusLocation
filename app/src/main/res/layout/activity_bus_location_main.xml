@@ -19,5 +19,19 @@
         android:layout_centerVertical="true"
         android:text=""
         android:id="@+id/text" />
+    <Spinner
+        android:id="@+id/spinnerBusno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:entries="@array/buses"></Spinner>
+
+    <Button
+        android:id="@+id/buttonUpdateBusno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@id/spinnerBusno"
+        android:text="Set bus number" />
 
 </android.support.constraint.ConstraintLayout>

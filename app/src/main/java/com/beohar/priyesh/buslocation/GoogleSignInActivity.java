@@ -200,7 +200,9 @@ public class GoogleSignInActivity extends BaseActivity implements
     private void giveAccess() {
         Toast.makeText(GoogleSignInActivity.this, "Authentication given.",
                 Toast.LENGTH_SHORT).show();
-        setContentView(R.layout.activity_bus_location_main);
+
+        Intent intent = new Intent("com.beohar.priyesh.buslocation.BusLocationMain");
+        startActivity(intent);
     }
 
     private void updateUI(FirebaseUser user) {
