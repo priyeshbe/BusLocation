@@ -9,7 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class BusLocationMain extends Activity implements LocationListener {
-    public static final String MY_TAG = "aaya";
 
     private LocationManager locationManager;
 
@@ -41,7 +40,7 @@ public class BusLocationMain extends Activity implements LocationListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(MY_TAG, "on create");
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_bus_location_main);
